@@ -1,4 +1,4 @@
-import socket, time, threading, RxService, TxService, Queue
+import socket, time, threading, RxService, TxService, Queue, IoService
 
 class ClientService(threading.Thread):
     def __init__(self, sock, connection, address, client_num):
@@ -21,5 +21,8 @@ class ClientService(threading.Thread):
         while 1:
             if(self.q.is_empty() == False):
                 print (self.q.delete())
-                self.tx.send("HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n<body>It Works!<body>")
+
+                io = IoService.IoService("index.html")                
+                msg = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n"+io.read()
+                self.tx.send(msg)
                 break
