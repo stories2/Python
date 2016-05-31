@@ -1,3 +1,8 @@
+2016 06 01
+브라우저가 무한 로딩을 하던 버그를 픽스
+Response할때 Header의 내용 중 Content-Length 의 내용이 빠져있었음
+ClientService 참조
+
 2016 05 30
 임시로 클라이언트에게 응답 메시지를 작성하여 보내던 방식에서 실제 html 파일의 내용을 읽어 그 내용을 반환하는 방식으로 구현
 IoService를 참조

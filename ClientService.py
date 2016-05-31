@@ -22,7 +22,9 @@ class ClientService(threading.Thread):
             if(self.q.is_empty() == False):
                 print (self.q.delete())
 
-                io = IoService.IoService("index.html")                
-                msg = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\n\r\n"+io.read()
+                io = IoService.IoService("index.html")
+                src = io.read()
+                length = len(src)
+                msg = "HTTP/1.1 200 OK\r\nContent-Type: text/html\r\nContent-Length: "+str(length)+"\r\n\r\n"+src
                 self.tx.send(msg)
                 break
